@@ -1,5 +1,6 @@
 import java.util.*;
 /**
+ * Programa que resolve o problema do campo minado
  * Classe principal
  * @author Igor Sgorla Brehm
  */
@@ -18,16 +19,30 @@ public class CampoMinado {
         + "neste terreno para a construcao do campo.");
         System.out.println("");
         System.out.println("");
+        Scanner in = new Scanner(System.in);
+        //int tamTerrenov = in.next();
+        //int tamTerrenoh = in.next();
+        //int numMinas = in.next();
         int numMinas = 10; //valor de teste
-        int tamTerreno = 50; //valor de teste
-        Mina[] vetor = new Mina[tamTerreno];
+        int tamTerrenov = 10; //valor de teste
+        int tamTerrenoh = 10;//valor de teste
+        if(tamTerrenov > tamTerrenoh){
+            Mina[] vetor = new Mina[tamTerrenov];
+        }
+        else{
+            Mina[] vetor = new Mina[tamTerrenoh];
+        }
+        //vetor.distribuirMinas(tamTerreno, vetor);
+        //PARA TESTE APENAS:
+        //vetor.printMinas();
         System.out.println("Para esta iteracao teremos "+numMinas+" minas no terreno");
-        System.out.println("E o terreno tem "+tamTerreno+" metros quadrados");
+        System.out.println("O terreno tem "+tamTerrenoh+" metros na horizontal");
+        System.out.println("E "+tamTerrenov+" metros na vertical");
         
         /*
         System.out.println("A maior area retangular encontrada foi de "+area+" metros quadrados");
-        System.out.println("Esta area fica entre as coordenadas: "+coordHor+" no eixo horizontal");
-        System.out.println("E entre as coordenadas: "+coordVer+" no eixo vertical");
+        System.out.println("Esta area fica entre as coordenadas: "+coordHormin+", "+coordHormax+" no eixo horizontal");
+        System.out.println("E entre as coordenadas: "+coordVermin+", "+coordVermax+" no eixo vertical");
         */
     }
     
@@ -47,16 +62,27 @@ public class CampoMinado {
         }
         /**
          * Classe que distribui as minas pelo campo
-         * TODO falta garantir que nenhuma mina vai estar no mesmo lugar de outra
          * @param tamTerreno inteiro com o tamanho do terreno
          * @param vetor  vetor contendo todas as minas que estarão no campo
          */
-        public void distribuirMinas(int tamTerreno, Mina[] vetor){
+        public void distribuirMinas(int tamTerrenoh, int tamTerrenov, Mina[] vetor){
             for(int k = 0; k < vetor.length; k++){
-                int aux = (int) (Math.random()*tamTerreno);
-                int auxb = (int) (Math.random()*tamTerreno);
+                int aux = (int) (Math.random()*tamTerrenoh);
+                int auxb = (int) (Math.random()*tamTerrenov);
+                //int aux = in.next();
+                //int auxb = in.next();
                 vetor[k].h = aux;
                 vetor[k].v = auxb;
+            }
+        }
+        /**
+         * Método apenas para teste inicial, printa o vetor de minas com as suas  coordenadas
+         * @param vetor vetor contendo todas as minas que estarão no campo
+         */
+        public void printMinas(Mina[] vetor){
+            for(int k = 0; k < vetor.length; k++){
+                System.out.println("Mina numero: "+k);
+                System.out.println("Posicao hor: "+vetor[k].h+", Posicao ver: "+vetor[k].v);
             }
         }
     }
