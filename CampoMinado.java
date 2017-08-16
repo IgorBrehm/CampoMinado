@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 /**
  * Classe principal
  * @author Igor Sgorla Brehm
@@ -18,8 +18,9 @@ public class CampoMinado {
         + "neste terreno para a construcao do campo.");
         System.out.println("");
         System.out.println("");
-        int numMinas = 10;
-        int tamTerreno = 50;
+        int numMinas = 10; //valor de teste
+        int tamTerreno = 50; //valor de teste
+        Mina[] vetor = new Mina[tamTerreno];
         System.out.println("Para esta iteracao teremos "+numMinas+" minas no terreno");
         System.out.println("E o terreno tem "+tamTerreno+" metros quadrados");
         
@@ -32,7 +33,7 @@ public class CampoMinado {
     
     /**
     * Classe que especifica o objeto mina e seus métodos
-    * @author igor
+    * 
     */
     public class Mina {
         public int v,h;
@@ -44,8 +45,19 @@ public class CampoMinado {
             v = ver;
             h = hor;
         }
-        public void distribuirMinas(int tamTerreno){
-            
+        /**
+         * Classe que distribui as minas pelo campo
+         * TODO falta garantir que nenhuma mina vai estar no mesmo lugar de outra
+         * @param tamTerreno inteiro com o tamanho do terreno
+         * @param vetor  vetor contendo todas as minas que estarão no campo
+         */
+        public void distribuirMinas(int tamTerreno, Mina[] vetor){
+            for(int k = 0; k < vetor.length; k++){
+                int aux = (int) (Math.random()*tamTerreno);
+                int auxb = (int) (Math.random()*tamTerreno);
+                vetor[k].h = aux;
+                vetor[k].v = auxb;
+            }
         }
     }
 }
